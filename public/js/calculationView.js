@@ -5,6 +5,8 @@ class calculationView{
         this.startDateInput   = document.querySelector('#startDateInput');
         this.endDateInput     = document.querySelector('#endDateInput');
         this.stationNameInput = document.querySelector('#stationNameInput');
+        this.travelTimeOutput = document.querySelector('#travelTimeOutput');
+        this.stationVolumeOutput = document.querySelector('#stationVolumeOutput');
         this.form             = document.querySelector('form');
         this.calculationView  = document.querySelector('#calculationView');
 
@@ -48,6 +50,9 @@ class calculationView{
         // console.log(fetchOptions);
         const result = await fetch('/calc', fetchOptions);
         const json = await result.json();
+
+        this.travelTimeOutput.value = json.travelTime;
+        this.stationVolumeOutput.value = json.totalVolume;
 
     }
 
