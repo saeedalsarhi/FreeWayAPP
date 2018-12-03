@@ -8,6 +8,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="/js/app.js" defer></script>
     <script src="/js/main.js" defer></script>
+    <script>
+      var urlString = window.location.href;
+      jQuery('#UpdateButton').attr('href', urlString + 'update.html');
+    </script>
   </head>
   <body>
 
@@ -22,40 +26,8 @@
       </form>
     </section>
 
-
-    <!-- View: Update Station Name -->
-    <!-- <section class="main hidden" id="updateStationView">
-      <h1>CS453 Freeway App</h1>
-      <h1>Update Station Page</h1>
-      <form>
-        Input: <input type="text" id="oldStationName" placeholder="Old Station Name"> <input type="text" id="newStationName" placeholder="New Station Name"><br>
-        <br><input type="submit" value="Submit" id="submit"><br>
-      </form>
-    </section> -->
+    <!-- Redirect to the Update Page -->
     <a href="" id="UpdateButton">Update Station</a>
-    <script>
-      var urlString = window.location.href;
-      jQuery('#UpdateButton').attr('href', urlString + 'update.html');
-      console.log(urlString + 'update.html');
-    </script>
-    <!-- View: Card created message -->
-    <!-- <section class="main hidden" id="status-view">
-      <h1>Card created!</h1>
-      <p>
-        <a href="" id="card-link">View your card</a>
-      </p>
-      <p>
-        <a href="/">Create another card</a>
-      </p>
-    </section> -->
 
-    <!-- View: Display card ID -->
-    <!-- <section class="main hidden" id="card-container">
-      <h1>CS453 e-cards</h1>
-      <section id="card-view">
-        <div id="card-image" class=""></div>
-        <div id="card-message"></div>
-      </section>
-    </section> -->
-  </body>
+</body>
 </html>
