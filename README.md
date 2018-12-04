@@ -1,5 +1,6 @@
 # FreeWayAPP
 
+*** if countering any issues when importing the csv file open the csv file and resave it, this will resolve it. ***
 * Import the csv files from current directory to your mongodb database using the following commands:
     - mongoimport --host=127.0.0.1 --db freeway --collection freeway_stations --type csv --file freeway_stations.csv --headerline
     - mongoimport --host=127.0.0.1 --db freeway --collection freeway_loopdata --type csv --file freeway_loopdata.csv --headerline
