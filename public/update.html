@@ -15,7 +15,11 @@
     <section class="main hidden" id="updateStationView">
         <h1>Update Station Page</h1>
         <form>
-            Input: <input type="text" id="oldStationNameInput" placeholder="Old Station Name"> <input type="text" id="newStationNameInput" placeholder="New Station Name"><br>
+            <select id="oldStationNameInput">
+                <option value="0" selected="selected">Choose...</option>
+            </select>
+
+            <input type="text" id="newStationNameInput" placeholder="New Station Name"><br>
             <br><input type="submit" value="Submit" id="submit"><br>
         </form>
     </section>

@@ -5,26 +5,58 @@ class calculationView{
         this.startDateInput   = document.querySelector('#startDateInput');
         this.endDateInput     = document.querySelector('#endDateInput');
         this.stationNameInput = document.querySelector('#stationNameInput');
+
         this.travelTimeOutput = document.querySelector('#travelTimeOutput');
         this.stationVolumeOutput = document.querySelector('#stationVolumeOutput');
         this.form             = document.querySelector('form');
         this.calculationView  = document.querySelector('#calculationView');
 
         // Bind methods.
+        this._onFormStart         = this._onFormStart.bind(this);
         this._onFormChange        = this._onFormChange.bind(this);
         this._onFormSubmit        = this._onFormSubmit.bind(this);
         this._saveValuesFromInput = this._saveValuesFromInput.bind(this);
 
         // Add event listeners.
-        // this.startDateInput.addEventListener    ('keyup', this._onFormChange);
-        // this.endDateInput.addEventListener      ('keyup', this._onFormChange);
-        // this.stationNameInput.addEventListener  ('keyup', this._onFormChange);
-        this.form.addEventListener('submit', this._onFormSubmit);
+        window.addEventListener                 ('load', this._onFormStart);
+        this.startDateInput.addEventListener    ('keyup', this._onFormChange);
+        this.endDateInput.addEventListener      ('keyup', this._onFormChange);
+        this.stationNameInput.addEventListener  ('keyup', this._onFormChange);
+        this.form.addEventListener              ('submit', this._onFormSubmit);
 
         this._saveValuesFromInput();
 
+        
         // this.containerElement.classList.remove('hidden');
     }
+
+    async _onFormStart(event) {
+        event.preventDefault();
+
+        const params = {
+            stationNames: ''
+        }
+        const fetchOptions = {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(params)
+        };
+
+        const result = await fetch('/populate', fetchOptions);
+        const json = await result.json();
+
+        for (var i = 0; i < json.stationNames.length; i++){
+            var option = document.createElement("option");
+            option.text = json.stationNames[i];
+            option.value = json.stationNames[i];
+            var select = document.getElementById("stationNameInput");
+            select.appendChild(option);
+        }
+    }
+
     _onFormChange() {
         this._saveValuesFromInput();
     }
@@ -47,7 +79,6 @@ class calculationView{
             },
             body: JSON.stringify(params)
         };
-        // console.log(fetchOptions);
         const result = await fetch('/calc', fetchOptions);
         const json = await result.json();
 
@@ -57,7 +88,6 @@ class calculationView{
     }
 
     _saveValuesFromInput() {
-        
         // Save Start Date.
         if (this.startDateInput !== null)
             this.startDate = this.startDateInput.value;

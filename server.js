@@ -32,6 +32,17 @@ startDbAndServer();
 
 ////////////////////////////////////////////////////////////////////////////////
 
+async function onload(req, res) {
+    stationsObjList = await stationCollection.find({}).toArray();
+    var stationNameList = new Array();
+    for(var i = 0; i < stationsObjList.length; i++){
+        stationNameList.push(stationsObjList[i].locationtext);
+    }
+    res.json({ stationNames: stationNameList });
+}
+app.post('/populate', jsonParser, onload);
+
+
 /*
  * The onCalculate function, which takes in an HTTP request 'req'.
  * 'req' is sent when _onFormSubmit in "public/js/calculationView.js" is executed. 
@@ -62,27 +73,39 @@ async function onCalculate(req, res) {
                 ]    
     } ).toArray());
 
-    //Find the avg Speed for the selected start and end Date/Time.
+    //Find the station's avg Speed and total volume for the selected start and end Date/Time.
     var totalSpeed = 0;
+    var totalVolume = 0;
+    var avgSpeed = 0;
+    var travelTime = 0;
     for (var i = 0; i < result.length; i++){
         
         if (result[i].speed === '')
             result[i].speed = 0;
         
-            totalSpeed += result[i].speed
-            avgSpeed = (totalSpeed) / (result.length);
+        if (result[i].volume === '')
+            result[i].volume = 0;
+
+        totalVolume += result[i].volume;
+        totalSpeed += result[i].speed
+        avgSpeed = (totalSpeed) / (result.length);
     }
     
     // Find the length of the Station User is looking for.
     lengthResult = await stationCollection.findOne({
         locationtext: stationName
     });
-    stationLength = lengthResult.length;
-
-    //Calculate the travel time
-    travelTime = ((stationLength)/(avgSpeed)) * 3600;
     
-    res.json({ travelTime: travelTime, totalVolume: '5' });
+    if(lengthResult !== null){
+        //Calculate the travel time
+        stationLength = lengthResult.length;
+        travelTime = ((stationLength) / (avgSpeed)) * 3600;
+    }
+    else
+        console.log('Station Doesn\'t exist');
+    
+    
+    res.json({ travelTime: travelTime, totalVolume: totalVolume });
 }
 app.post('/calc', jsonParser, onCalculate);
 
@@ -91,12 +114,6 @@ async function onUpdate(req, res) {
     const routeParams = req;
     const oldStationName = routeParams.body.oldStationName;
     const newStationName = routeParams.body.newStationName;
-    doc = {
-        locationtext: oldStationName
-    };
-    response = await stationCollection.findOne(doc);
-    remove = await stationCollection.remove(doc);
-    response.locationtext = newStationName;
-    insert = await stationCollection.insertOne(response);
+    response = await stationCollection.updateOne( { locationtext: oldStationName }, { $set: { locationtext: newStationName } } );
 }
 app.post('/save', jsonParser, onUpdate);

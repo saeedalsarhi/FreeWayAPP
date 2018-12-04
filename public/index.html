@@ -8,10 +8,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="/js/app.js" defer></script>
     <script src="/js/main.js" defer></script>
-    <script>
-      var urlString = window.location.href;
-      jQuery('#UpdateButton').attr('href', urlString + 'update.html');
-    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/2.14.1/moment.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   </head>
   <body>
 
@@ -19,15 +21,54 @@
     <section class= "main" id="calculationView">
       <h1>CS453 Freeway App</h1>
       <h1>Calculation Page</h1>
-      <form>
-        Input: <input type="text" id="startDateInput" placeholder="Start Date/Time"> <input type="text" id="endDateInput" placeholder="End Date/Time"> <input type="text" id="stationNameInput" placeholder="Station Name"><br><br>
-        <input type="submit" value="Submit"><br>
-        <br>Travel Time: <input type="text" id="travelTimeOutput" readonly> Volume: <input type="text" id="stationVolumeOutput" readonly>
+        <form class='col-md-12'>
+        <div class='col-md-3'>
+          <div class="form-group">
+            <div class='input-group date' >
+              <input type='text' class="form-control" id='startDateInput' placeholder="Start Date/Time" />
+              <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class='col-md-3'>
+          <div class="form-group">
+            <div class='input-group date' >
+              <input type='text' class="form-control" id='endDateInput' placeholder="End Date/Time" />
+              <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+              </span>
+            </div>
+          </div>
+        </div>
+        <!-- Input: <input type="text" id="startDateInput" placeholder="Start Date/Time"> <input type="text" id="endDateInput" placeholder="End Date/Time">  -->
+        <select id="stationNameInput">
+          <option value="0" selected="selected">Choose...</option>
+        </select>
+        <!-- <input type="text" id="stationNameInput" placeholder="Station Name"> -->
+        <input type="submit" value="Submit">
+      </form>
+      <form class="col-md-12">
+        Travel Time: <input type="text" id="travelTimeOutput" readonly> Volume: <input type="text" id="stationVolumeOutput" readonly><br>
+        <!-- Redirect to the Update Page -->
+        <br><a href="" id="UpdateButton">Update Station</a>
       </form>
     </section>
 
-    <!-- Redirect to the Update Page -->
-    <a href="" id="UpdateButton">Update Station</a>
+
+
+    <script>
+      var urlString = window.location.href;
+      jQuery('#UpdateButton').attr('href', urlString + 'update.html');
+    </script>
+
+    <script>
+      jQuery(function () {
+        jQuery('#startDateInput').datetimepicker({ format: 'YYYY-MM-DD HH:mm:ss-07' });
+        jQuery('#endDateInput').datetimepicker({ format: 'YYYY-MM-DD HH:mm:ss-07' });
+      });
+    </script>
 
 </body>
 </html>
