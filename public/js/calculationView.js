@@ -25,9 +25,6 @@ class calculationView{
         this.form.addEventListener              ('submit', this._onFormSubmit);
 
         this._saveValuesFromInput();
-
-        
-        // this.containerElement.classList.remove('hidden');
     }
 
     async _onFormStart(event) {

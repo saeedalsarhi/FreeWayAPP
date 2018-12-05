@@ -104,7 +104,6 @@ async function onCalculate(req, res) {
     else
         console.log('Station Doesn\'t exist');
     
-    
     res.json({ travelTime: travelTime, totalVolume: totalVolume });
 }
 app.post('/calc', jsonParser, onCalculate);
