@@ -26,12 +26,12 @@
     Calculation Page
     -----------------
     Select a start date, end date, and the station in which the user wants to query the data for 
-        Dates: September 15th, 2011 - November 15th, 2011
-        (Start date and end date must be within the specified timeline)
-        Output: Drive time in seconds and volume of cars within time period
+        - Dates: September 15th, 2011 - November 15th, 2011
+        - (Start date and end date must be within the specified timeline)
+        - Output: Drive time in seconds and volume of cars within time period
     
     Update Page
-    -----------
-        Select a station and rename it whatever you like
-        *Please refresh the page to see the station renamed
+    ------------
+    Select a station and rename it whatever you like
+         - *Please refresh the page to see the station renamed
     
