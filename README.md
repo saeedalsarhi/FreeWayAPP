@@ -13,7 +13,15 @@
 * run the client side by using the following link:
     - http://localhost:3000
     
- Test Examples:
+  
+* How to access mobile version
+    1. Run program (node server.js)
+    2. Open terminal and find the host IP address (Commands: ipconfig, ifconfig, ip a)
+    3. On your mobile device, go on your internet browser and input the IP address followed by port 3000 in your search bar
+      (ip address:3000)
+   
+    
+ *Test Examples:
  
     Calculation Page
     -----------------
