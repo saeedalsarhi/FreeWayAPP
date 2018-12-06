@@ -21,7 +21,7 @@
       (ip address:3000)
    
     
- *Test Examples:
+ * How to test the web application
  
     Calculation Page
     -----------------
