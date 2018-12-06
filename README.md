@@ -7,10 +7,10 @@
     - mongoimport --host=127.0.0.1 --db freeway --collection freeway_detectors --type csv --file freeway_detectors.csv --headerline
     - mongoimport --host=127.0.0.1 --db freeway --collection highways --type csv --file highways.csv --headerline
 
-* run the server using the following command:
-    -node server.js
+* Run the server using the following command:
+    - node server.js
 
-* run the client side by using the following link:
+* Run the client side by using the following link:
     - http://localhost:3000
     
   
