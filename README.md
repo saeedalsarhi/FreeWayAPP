@@ -30,7 +30,7 @@ How to test the web application
         - (Start date and end date must be within the specified timeline)
         - Output: Drive time in seconds and volume of cars within time period
    
-Update Page
+* Update Page
     - Select a station and rename it whatever you like
     - *Please refresh the page to see the station renamed
     
